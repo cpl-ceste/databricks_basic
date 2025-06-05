@@ -1,0 +1,11 @@
+customer_id,name,email,state,registration_date,last_purchase_date,loyalty_score
+1001,John Doe,john.doe@email.com,CA,2020-05-15,2023-04-10 14:30:00,85
+1002,Jane Smith,jane.smith@email.com,TX,2019-11-22,2023-04-05 09:15:00,92
+1003,Robert Johnson,robert.j@email.com,FL,2021-02-10,2023-03-28 16:45:00,78
+1004,Emily Davis,emily.davis@email.com,NY,2022-07-30,2023-04-12 11:20:00,65
+1005,Michael Wilson,michael.w@email.com,CA,2020-09-18,2023-04-08 13:10:00,88
+1006,Sarah Brown,sarah.brown@email.com,TX,2021-12-05,2023-03-30 10:05:00,72
+1007,David Lee,david.lee@email.com,IL,2019-08-12,2023-04-01 15:25:00,95
+1008,Lisa Garcia,lisa.g@email.com,AZ,2022-03-25,2023-04-09 12:40:00,60
+1009,James Martinez,james.m@email.com,WA,2020-11-08,2023-04-07 14:15:00,82
+1010,Jennifer Robinson,jennifer.r@email.com,CO,2021-06-19,2023-04-03 08:50:00,75

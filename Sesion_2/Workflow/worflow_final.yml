@@ -1,0 +1,55 @@
+resources:
+  jobs:
+    Workflow_ejemplo:
+      name: Workflow ejemplo
+      tasks:
+        - task_key: 01_ingestar_datos
+          spark_python_task:
+            python_file: /Workspace/Users/psanzcape@gmail.com/databricks/Sesion_2/Workflow/01_ingesta_datos.py
+            parameters:
+              - --input_file=/Volumes/sesion_2/workflow/datos/ordenes_diarias.csv
+              - --output_table=sesion_2.workflow.tabla_clientes
+          environment_key: Default
+        - task_key: 02_validar_datos
+          depends_on:
+            - task_key: 01_ingestar_datos
+          spark_python_task:
+            python_file: /Workspace/Users/psanzcape@gmail.com/databricks/Sesion_2/Workflow/02_validar_datos.py
+            parameters:
+              - --input_table=sesion_2.workflow.tabla_clientes
+              - --output_table=sesion_2.workflow.tabla_clientes_validada
+          environment_key: Default
+        - task_key: 03_castear_datos
+          depends_on:
+            - task_key: 02_validar_datos
+          spark_python_task:
+            python_file: /Workspace/Users/psanzcape@gmail.com/databricks/Sesion_2/Workflow/03_castear_datos.py
+            parameters:
+              - --input_table=sesion_2.workflow.tabla_clientes_validada
+              - --output_table=sesion_2.workflow.tabla_clientes_casteada
+          environment_key: Default
+        - task_key: 04_agrupar_datos
+          depends_on:
+            - task_key: 03_castear_datos
+          spark_python_task:
+            python_file: /Workspace/Users/psanzcape@gmail.com/databricks/Sesion_2/Workflow/04_agrupar_datos.py
+            parameters:
+              - --input_table=sesion_2.workflow.tabla_clientes_casteada
+              - --output_table=sesion_2.workflow.tabla_clientes_agrupada
+          environment_key: Default
+        - task_key: 05_alarmas
+          depends_on:
+            - task_key: 04_agrupar_datos
+          spark_python_task:
+            python_file: /Workspace/Users/psanzcape@gmail.com/databricks/Sesion_2/Workflow/05_alarmas.py
+            parameters:
+              - --input_table=sesion_2.workflow.tabla_clientes_agrupada
+              - --output_table=sesion_2.workflow.tabla_clientes_final
+              - --umbral_ventas=100000
+          environment_key: Default
+      queue:
+        enabled: true
+      environments:
+        - environment_key: Default
+          spec:
+            client: "2"

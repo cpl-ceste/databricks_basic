@@ -1,0 +1,2 @@
+customer_id,name,email,state,registration_date,last_purchase_date,loyalty_score
+5000,Pablo Sanz,pablo.sanz@email.com,CA,2020-05-15,2023-04-10 14:30:00,85
